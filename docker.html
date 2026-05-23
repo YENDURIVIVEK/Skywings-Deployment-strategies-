@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyWings - Docker Containerization</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#0b1020;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      height:80px;
+      background:rgba(0,0,0,0.4);
+      backdrop-filter:blur(10px);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 60px;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu{
+      display:flex;
+      gap:35px;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      transition:0.3s;
+      position:relative;
+    }
+
+    .menu a:hover{
+      color:#00d9ff;
+    }
+
+    .menu a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0%;
+      height:2px;
+      background:#00d9ff;
+      transition:0.4s;
+    }
+
+    .menu a:hover::after{
+      width:100%;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      width:100%;
+      min-height:100vh;
+      background:
+      linear-gradient(rgba(5,10,25,0.8), rgba(5,10,25,0.9)),
+      url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 80px 60px;
+    }
+
+    .hero-content{
+      max-width:1200px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .left h1{
+      font-size:58px;
+      line-height:1.2;
+      margin-bottom:25px;
+    }
+
+    .left h1 span{
+      color:#00d9ff;
+    }
+
+    .left p{
+      color:#d9d9d9;
+      line-height:1.9;
+      font-size:17px;
+      margin-bottom:35px;
+    }
+
+    .btn-group{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 32px;
+      border:none;
+      border-radius:40px;
+      font-size:15px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.4s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .primary{
+      background:#00d9ff;
+      color:#000;
+    }
+
+    .primary:hover{
+      transform:translateY(-5px);
+      box-shadow:0 10px 25px rgba(0,217,255,0.5);
+    }
+
+    .secondary{
+      background:transparent;
+      border:2px solid #00d9ff;
+      color:white;
+    }
+
+    .secondary:hover{
+      background:#00d9ff;
+      color:black;
+    }
+
+    /* CARD */
+
+    .docker-card{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:25px;
+      padding:40px;
+      backdrop-filter:blur(12px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    .docker-card img{
+      width:120px;
+      margin-bottom:25px;
+    }
+
+    .docker-card h2{
+      color:#00d9ff;
+      margin-bottom:20px;
+      font-size:30px;
+    }
+
+    .docker-card p{
+      color:#e0e0e0;
+      line-height:1.9;
+      font-size:15px;
+      margin-bottom:18px;
+    }
+
+    /* FEATURES */
+
+    .features{
+      width:100%;
+      padding:80px 70px;
+      background:#111827;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:42px;
+      margin-bottom:60px;
+      color:#00d9ff;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .feature-box{
+      background:#1c2438;
+      padding:35px;
+      border-radius:20px;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-box:hover{
+      transform:translateY(-10px);
+      box-shadow:0 10px 30px rgba(0,217,255,0.25);
+    }
+
+    .feature-box h3{
+      color:#00d9ff;
+      margin-bottom:15px;
+      font-size:22px;
+    }
+
+    .feature-box p{
+      color:#d6d6d6;
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    /* NEW INFO SECTION */
+
+    .info-section{
+      padding:90px 70px;
+      background:#0f172a;
+    }
+
+    .info-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+      margin-top:50px;
+    }
+
+    .info-card{
+      background:#182235;
+      padding:35px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .info-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 10px 35px rgba(0,217,255,0.2);
+    }
+
+    .info-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:15px;
+      margin-bottom:25px;
+    }
+
+    .info-card h2{
+      color:#00d9ff;
+      margin-bottom:18px;
+      font-size:28px;
+    }
+
+    .info-card p{
+      color:#d6d6d6;
+      line-height:1.9;
+      margin-bottom:18px;
+      font-size:15px;
+    }
+
+    .step{
+      margin-bottom:18px;
+      padding:15px;
+      background:#101827;
+      border-left:4px solid #00d9ff;
+      border-radius:10px;
+    }
+
+    .step h4{
+      color:#00d9ff;
+      margin-bottom:8px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#0a0f1c;
+      padding:25px;
+      text-align:center;
+      color:#bdbdbd;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:950px){
+
+      .hero-content{
+        grid-template-columns:1fr;
+      }
+
+      .left h1{
+        font-size:42px;
+      }
+
+      nav{
+        padding:0 25px;
+      }
+
+      .menu{
+        gap:18px;
+        flex-wrap:wrap;
+      }
+
+      .hero{
+        padding:140px 30px 60px;
+      }
+
+      .features,
+      .info-section{
+        padding:70px 30px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="docker.html">Docker</a>
+      <a href="stratagies.html">Strategies</a>
+      <a href="cicd.html">CI/CD</a>
+      <a href="differnces.html">Cloud</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="left">
+
+        <h1>
+          Docker in <span>Containerization</span>
+        </h1>
+
+        <p>
+          Docker plays a major role in modern application deployment by enabling
+          lightweight, portable, and scalable containers. In the SkyWings Airline
+          Booking System, Docker helps developers package the frontend, backend,
+          APIs, and databases into isolated environments.
+        </p>
+
+        <p>
+          Docker improves deployment efficiency, minimizes dependency conflicts,
+          supports microservices architecture, and accelerates CI/CD pipelines.
+        </p>
+
+        <div class="btn-group">
+
+          <a href="#explore-docker" class="btn primary">
+            Explore Docker
+          </a>
+
+          <a href="#deployment-guide" class="btn secondary">
+            Deployment Guide
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="docker-card">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919853.png" alt="Docker Logo">
+
+        <h2>Why Docker for SkyWings?</h2>
+
+        <p>✔ Provides isolated environments for airline booking modules.</p>
+
+        <p>✔ Simplifies deployment across cloud platforms like AWS and Render.</p>
+
+        <p>✔ Supports rapid scaling during peak flight booking traffic.</p>
+
+        <p>✔ Enables faster software delivery using DevOps pipelines.</p>
+
+        <p>✔ Improves portability and operational consistency.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features">
+
+    <h1 class="section-title">Docker Advantages</h1>
+
+    <div class="feature-grid">
+
+      <div class="feature-box">
+        <h3>Portability</h3>
+        <p>
+          Docker containers can run on any operating system or cloud
+          infrastructure without modifying application code.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Scalability</h3>
+        <p>
+          SkyWings can scale booking services dynamically during high customer
+          traffic using container orchestration tools.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Fast Deployment</h3>
+        <p>
+          Docker enables rapid deployment and rollback mechanisms for airline
+          reservation services and APIs.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Resource Efficiency</h3>
+        <p>
+          Containers consume fewer system resources compared to traditional
+          virtual machines, improving performance.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- EXPLORE DOCKER SECTION -->
+
+  <section class="info-section" id="explore-docker">
+
+    <h1 class="section-title">Explore Docker Technology</h1>
+
+    <div class="info-container">
+
+      <div class="info-card">
+
+        <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?q=80&w=1200&auto=format&fit=crop" alt="Docker">
+
+        <h2>What is Docker?</h2>
+
+        <p>
+          Docker is an open-source containerization platform used to package
+          applications and dependencies into lightweight containers.
+        </p>
+
+        <p>
+          In the SkyWings Airline Booking System, Docker helps maintain consistent
+          environments for frontend interfaces, backend APIs, payment services,
+          and airline databases.
+        </p>
+
+        <p>
+          Developers can deploy applications faster with improved reliability,
+          automation, and infrastructure management.
+        </p>
+
+      </div>
+
+      <div class="info-card">
+
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Microservices">
+
+        <h2>Docker Architecture</h2>
+
+        <p>
+          Docker architecture includes Docker Engine, Docker Images,
+          Docker Containers, Docker Hub, and Docker Compose.
+        </p>
+
+        <p>
+          SkyWings uses microservices architecture where each airline module
+          operates independently inside secure containers.
+        </p>
+
+        <p>
+          This architecture improves scalability, resilience, and operational
+          flexibility in cloud-native environments.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DEPLOYMENT GUIDE SECTION -->
+
+  <section class="info-section" id="deployment-guide">
+
+    <h1 class="section-title">Docker Deployment Guide</h1>
+
+    <div class="info-container">
+
+      <div class="info-card">
+
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Deployment">
+
+        <h2>Deployment Workflow</h2>
+
+        <div class="step">
+          <h4>Step 1 - Build Image</h4>
+          <p>Create Docker images for frontend and backend services.</p>
+        </div>
+
+        <div class="step">
+          <h4>Step 2 - Configure Containers</h4>
+          <p>Set environment variables, ports, and networking configuration.</p>
+        </div>
+
+        <div class="step">
+          <h4>Step 3 - Push to Registry</h4>
+          <p>Upload Docker images to Docker Hub or private registries.</p>
+        </div>
+
+        <div class="step">
+          <h4>Step 4 - Deploy to Cloud</h4>
+          <p>Deploy containers using AWS, Render, Kubernetes, or Vercel.</p>
+        </div>
+
+      </div>
+
+      <div class="info-card">
+
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="CI/CD">
+
+        <h2>DevOps Integration</h2>
+
+        <p>
+          Docker integrates with CI/CD pipelines to automate testing,
+          building, deployment, and monitoring operations.
+        </p>
+
+        <p>
+          SkyWings uses automated pipelines for continuous delivery of
+          airline reservation features with minimal downtime.
+        </p>
+
+        <p>
+          Security scanning, monitoring dashboards, logging systems,
+          and rollback strategies are integrated into deployment workflows.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 SkyWings Airline Booking System | Docker Containerization Architecture
+  </footer>
+
+</body>
+</html>

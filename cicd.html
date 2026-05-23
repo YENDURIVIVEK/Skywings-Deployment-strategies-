@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyWings DevOps Deployment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#081120;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    height:85px;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 70px;
+    position:fixed;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    color:#00d9ff;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#00d9ff;
+}
+
+/* HERO SECTION */
+
+.hero{
+    width:100%;
+    min-height:100vh;
+    background:
+    linear-gradient(rgba(5,10,25,0.88),rgba(5,10,25,0.92)),
+    url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    padding:140px 70px 80px;
+}
+
+.hero-title{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.hero-title h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero-title h1 span{
+    color:#00d9ff;
+}
+
+.hero-title p{
+    max-width:900px;
+    margin:auto;
+    line-height:1.9;
+    color:#d5d5d5;
+    font-size:17px;
+}
+
+/* MAIN CARDS */
+
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:35px;
+    transition:0.4s;
+    backdrop-filter:blur(12px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:rgba(0,217,255,0.12);
+    border-radius:50%;
+    top:-70px;
+    right:-70px;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,217,255,0.25);
+}
+
+.card h2{
+    font-size:30px;
+    margin-bottom:22px;
+    color:#00d9ff;
+    position:relative;
+}
+
+.card p{
+    line-height:1.9;
+    color:#e1e1e1;
+    font-size:15px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.card ul{
+    padding-left:18px;
+    position:relative;
+}
+
+.card ul li{
+    margin-bottom:14px;
+    line-height:1.7;
+    color:#d6d6d6;
+}
+
+/* WORKFLOW SECTION */
+
+.workflow{
+    margin-top:90px;
+}
+
+.workflow h1{
+    text-align:center;
+    font-size:48px;
+    margin-bottom:50px;
+    color:#00d9ff;
+}
+
+.steps{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.step{
+    width:220px;
+    background:#111b2f;
+    padding:28px;
+    border-radius:18px;
+    text-align:center;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.step:hover{
+    transform:scale(1.05);
+}
+
+.step h3{
+    color:#00d9ff;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.step p{
+    font-size:14px;
+    color:#d8d8d8;
+    line-height:1.7;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:80px;
+    background:#060d18;
+    text-align:center;
+    padding:25px;
+    color:#c7c7c7;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    nav{
+        padding:0 25px;
+    }
+
+    nav ul{
+        gap:15px;
+    }
+
+    .hero{
+        padding:140px 25px 60px;
+    }
+
+    .hero-title h1{
+        font-size:42px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">SkyWings</div>
+
+   <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="docker.html">Docker</a></li>
+    <li><a href="stratagies.html">Strategies</a></li>
+    <li><a href="cicd.html">CI/CD</a></li>
+    <li><a href="differnces.html">Cloud</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-title">
+
+        <h1>SkyWings <span>Deployment Architecture</span></h1>
+
+        <p>
+            Modern airline booking systems require continuous software delivery,
+            operational monitoring, and strong security controls to maintain
+            availability, performance, and customer trust. CI/CD pipelines,
+            monitoring systems, and deployment security collectively ensure
+            that SkyWings applications are scalable, reliable, secure, and
+            production-ready across cloud environments.
+        </p>
+
+    </div>
+
+    <!-- MAIN CARDS -->
+
+    <div class="container">
+
+        <!-- CI/CD -->
+
+        <div class="card">
+
+            <h2>CI/CD Pipelines</h2>
+
+            <p>
+                CI/CD stands for Continuous Integration and Continuous Deployment.
+                These pipelines automate the software development lifecycle from
+                coding to production deployment.
+            </p>
+
+            <p>
+                In the SkyWings Airline Booking System, developers continuously
+                push source code updates into repositories like GitHub. The CI/CD
+                pipeline automatically builds the application, executes testing,
+                validates APIs, checks dependencies, and deploys applications
+                into staging or production environments.
+            </p>
+
+            <ul>
+                <li>Automates build, test, and deployment processes.</li>
+                <li>Reduces manual deployment errors and downtime.</li>
+                <li>Improves software delivery speed and reliability.</li>
+                <li>Supports rapid feature updates for booking services.</li>
+                <li>Enables rollback mechanisms during deployment failures.</li>
+                <li>Integrates with Docker and Kubernetes environments.</li>
+            </ul>
+
+        </div>
+
+        <!-- MONITORING -->
+
+        <div class="card">
+
+            <h2>Application Monitoring</h2>
+
+            <p>
+                Application monitoring ensures that the airline reservation
+                platform performs efficiently under real-time operational loads.
+                Monitoring tools continuously track application health,
+                infrastructure metrics, and customer transactions.
+            </p>
+
+            <p>
+                For SkyWings, monitoring systems analyze server uptime, API
+                response times, database utilization, booking transactions,
+                payment gateway status, and cloud resource consumption.
+            </p>
+
+            <ul>
+                <li>Detects server failures and performance bottlenecks.</li>
+                <li>Tracks CPU, memory, and network utilization.</li>
+                <li>Improves customer experience with real-time analytics.</li>
+                <li>Supports automated alerts during system failures.</li>
+                <li>Provides logs for debugging and troubleshooting.</li>
+                <li>Ensures high availability during peak booking traffic.</li>
+            </ul>
+
+        </div>
+
+        <!-- SECURITY -->
+
+        <div class="card">
+
+            <h2>Security Considerations</h2>
+
+            <p>
+                Security is a critical requirement in deployment because airline
+                systems process customer credentials, payment details, booking
+                records, and sensitive operational data.
+            </p>
+
+            <p>
+                SkyWings deployment architecture must implement authentication,
+                encryption, vulnerability scanning, secure APIs, access control,
+                and infrastructure protection to prevent cyber threats and
+                unauthorized access.
+            </p>
+
+            <ul>
+                <li>Use HTTPS and SSL encryption for secure communication.</li>
+                <li>Implement role-based authentication and authorization.</li>
+                <li>Secure cloud infrastructure using firewalls.</li>
+                <li>Perform vulnerability scanning in CI/CD pipelines.</li>
+                <li>Protect databases using encryption and backups.</li>
+                <li>Monitor suspicious login attempts and attacks.</li>
+                <li>Use container security scanning for Docker images.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- WORKFLOW -->
+
+    <div class="workflow">
+
+        <h1>Deployment Workflow</h1>
+
+        <div class="steps">
+
+            <div class="step">
+                <h3>1</h3>
+                <p>Developer pushes code to Git repository.</p>
+            </div>
+
+            <div class="step">
+                <h3>2</h3>
+                <p>CI pipeline builds and tests the application.</p>
+            </div>
+
+            <div class="step">
+                <h3>3</h3>
+                <p>Docker containers package the application services.</p>
+            </div>
+
+            <div class="step">
+                <h3>4</h3>
+                <p>CD pipeline deploys the application to cloud servers.</p>
+            </div>
+
+            <div class="step">
+                <h3>5</h3>
+                <p>Monitoring tools track system performance and security.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 SkyWings Airline Booking System | CI/CD • Monitoring • Deployment Security
+</footer>
+
+</body>
+</html>

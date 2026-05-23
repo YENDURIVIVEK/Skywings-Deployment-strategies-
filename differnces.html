@@ -1,0 +1,370 @@
+<!-- ======================================================
+FILE : differnces.html
+UPDATED WITH FULL NAVBAR + CSS
+====================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyWings Cloud Deployment Comparison</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:34px;
+    font-weight:700;
+    color:#38bdf8;
+}
+
+.navbar ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.navbar ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+    font-weight:500;
+}
+
+.navbar ul li a:hover{
+    color:#38bdf8;
+}
+
+/* HEADER */
+
+header{
+    text-align:center;
+    padding:70px 20px;
+}
+
+header h1{
+    font-size:55px;
+    margin-bottom:20px;
+    color:#38bdf8;
+}
+
+header p{
+    max-width:950px;
+    margin:auto;
+    line-height:1.9;
+    color:#d1d5db;
+    font-size:18px;
+}
+
+/* CARDS */
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    padding-bottom:70px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 30px rgba(56,189,248,0.3);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:25px;
+}
+
+.card-content h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+    font-size:32px;
+}
+
+.card-content p{
+    line-height:1.8;
+    color:#ddd;
+    margin-bottom:20px;
+}
+
+.card-content ul{
+    padding-left:18px;
+}
+
+.card-content ul li{
+    margin-bottom:12px;
+    line-height:1.7;
+}
+
+/* TABLE */
+
+.table-section{
+    width:90%;
+    max-width:1300px;
+    margin:50px auto;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0284c7;
+    padding:18px;
+}
+
+td{
+    padding:18px;
+    text-align:center;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:#0b1220;
+    color:#cbd5e1;
+}
+
+@media(max-width:768px){
+
+header h1{
+    font-size:38px;
+}
+
+.navbar{
+    padding:18px 20px;
+}
+
+.navbar ul{
+    gap:14px;
+    font-size:14px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">SkyWings</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="docker.html">Docker</a></li>
+<li><a href="stratagies.html">Strategies</a></li>
+<li><a href="cicd.html">CI/CD</a></li>
+<li><a href="differnces.html">Cloud</a></li>
+</ul>
+
+</nav>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>Cloud Deployment Comparison</h1>
+
+<p>
+SkyWings Airline Booking System compares modern cloud deployment
+platforms including AWS, Render, and Vercel. These platforms
+support scalable full-stack application deployment with integrated
+DevOps workflows, CI/CD automation, and enterprise-grade infrastructure.
+</p>
+
+</header>
+
+<!-- CARDS -->
+
+<section class="container">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h2>AWS</h2>
+
+<p>
+AWS provides enterprise cloud infrastructure with advanced scalability,
+security, and DevOps automation capabilities.
+</p>
+
+<ul>
+<li>Supports EC2, Lambda, ECS, and Kubernetes</li>
+<li>Enterprise-grade scalability</li>
+<li>Advanced monitoring and security</li>
+<li>Suitable for microservices architecture</li>
+<li>Global cloud infrastructure</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h2>Render</h2>
+
+<p>
+Render simplifies backend and full-stack deployment with built-in CI/CD
+automation and developer-friendly infrastructure management.
+</p>
+
+<ul>
+<li>Easy GitHub deployment</li>
+<li>Automatic CI/CD pipeline</li>
+<li>Docker container support</li>
+<li>Managed PostgreSQL database</li>
+<li>Affordable deployment solution</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h2>Vercel</h2>
+
+<p>
+Vercel is optimized for frontend frameworks such as React and Next.js
+with ultra-fast deployment and CDN acceleration.
+</p>
+
+<ul>
+<li>Best for React applications</li>
+<li>Global CDN support</li>
+<li>Fast frontend deployment</li>
+<li>Git integration support</li>
+<li>Edge computing architecture</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TABLE -->
+
+<section class="table-section">
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>AWS</th>
+<th>Render</th>
+<th>Vercel</th>
+</tr>
+
+<tr>
+<td>Scalability</td>
+<td>Very High</td>
+<td>Medium</td>
+<td>Frontend Optimized</td>
+</tr>
+
+<tr>
+<td>CI/CD</td>
+<td>Advanced</td>
+<td>Built-In</td>
+<td>Automatic</td>
+</tr>
+
+<tr>
+<td>Best For</td>
+<td>Enterprise</td>
+<td>Full Stack</td>
+<td>Frontend Apps</td>
+</tr>
+
+<tr>
+<td>Ease of Use</td>
+<td>Complex</td>
+<td>Easy</td>
+<td>Very Easy</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+© 2026 SkyWings Airline Booking System | AWS vs Render vs Vercel
+</footer>
+
+</body>
+</html>

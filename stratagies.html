@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyWings Deployment Strategies</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#03045e,#0077b6,#00b4d8);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Navbar */
+
+.navbar{
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:34px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#00f5ff;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#00f5ff;
+}
+
+/* Hero Section */
+
+.hero{
+    text-align:center;
+    padding:80px 20px 40px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+    animation:slideDown 1s ease;
+}
+
+.hero h1 span{
+    color:#00f5ff;
+}
+
+.hero p{
+    max-width:950px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.9;
+    color:#f2f2f2;
+}
+
+/* Strategy Buttons */
+
+.button-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-top:50px;
+}
+
+.strategy-btn{
+    width:260px;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.strategy-btn::before{
+    content:'';
+    position:absolute;
+    width:0%;
+    height:100%;
+    left:0;
+    top:0;
+    background:linear-gradient(90deg,#00f5ff,#0096c7);
+    transition:0.5s;
+    z-index:-1;
+}
+
+.strategy-btn:hover::before{
+    width:100%;
+}
+
+.strategy-btn:hover{
+    transform:translateY(-8px) scale(1.04);
+}
+
+/* Info Card */
+
+.info-section{
+    display:flex;
+    justify-content:center;
+    padding:50px 20px 80px;
+}
+
+.info-card{
+    width:95%;
+    max-width:1200px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(14px);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(0,0,0,0.35);
+    animation:fadeInUp 0.8s ease;
+}
+
+.info-top{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.info-image{
+    flex:1;
+    min-width:300px;
+}
+
+.info-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.info-content{
+    flex:1;
+    min-width:300px;
+    padding:40px;
+}
+
+.info-content h2{
+    font-size:38px;
+    margin-bottom:20px;
+    color:#00f5ff;
+}
+
+.info-content p{
+    font-size:18px;
+    line-height:1.9;
+    color:#f2f2f2;
+    margin-bottom:20px;
+}
+
+.features li{
+    margin:12px 0;
+    font-size:17px;
+}
+
+/* Deployment Flow */
+
+.flow-box{
+    margin-top:25px;
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+}
+
+.flow-box h3{
+    margin-bottom:15px;
+    color:#00f5ff;
+}
+
+.flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+}
+
+.step{
+    padding:12px 18px;
+    background:#00b4d8;
+    border-radius:12px;
+    font-weight:600;
+    animation:pulse 2s infinite;
+}
+
+.arrow{
+    font-size:22px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:22px;
+    background:rgba(0,0,0,0.2);
+    color:#ddd;
+}
+
+/* Animations */
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:translateY(-50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeInUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.06);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .strategy-btn{
+        width:100%;
+        max-width:320px;
+    }
+
+    .info-content{
+        padding:25px;
+    }
+
+    .info-content h2{
+        font-size:30px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Sky<span>Wings</span>
+    </div>
+
+   <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="docker.html">Docker</a>
+    <a href="stratagies.html">Strategies</a>
+    <a href="cicd.html">CI/CD</a>
+    <a href="differnces.html">Cloud</a>
+</div>
+
+</nav>
+
+<!-- Hero -->
+
+<section class="hero">
+
+    <h1>Cloud Deployment Strategies for <span>SkyWings</span></h1>
+
+    <p>
+        SkyWings Airline Booking System demonstrates enterprise-level cloud deployment
+        strategies used in modern DevOps environments. Click each deployment strategy
+        to explore architecture flow, deployment lifecycle, animation effects,
+        infrastructure concepts, scalability, and production-ready implementation methods.
+    </p>
+
+    <div class="button-container">
+
+        <button class="strategy-btn"
+        onclick="showInfo('traditional')">
+            Traditional Deployment
+        </button>
+
+        <button class="strategy-btn"
+        onclick="showInfo('bluegreen')">
+            Blue-Green Deployment
+        </button>
+
+        <button class="strategy-btn"
+        onclick="showInfo('rolling')">
+            Rolling Deployment
+        </button>
+
+        <button class="strategy-btn"
+        onclick="showInfo('container')">
+            Container Deployment
+        </button>
+
+    </div>
+
+</section>
+
+<!-- Info Section -->
+
+<section class="info-section">
+
+<div class="info-card" id="infoCard">
+
+    <div class="info-top">
+
+        <div class="info-image">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="info-content">
+
+            <h2>Traditional Deployment</h2>
+
+            <p>
+                SkyWings directly deploys the airline booking application onto a dedicated
+                production server. Frontend, backend APIs, and databases are manually configured
+                inside one environment.
+            </p>
+
+            <ul class="features">
+                <li>✔ Application deployed directly on server</li>
+                <li>✔ Manual infrastructure setup</li>
+                <li>✔ Lower operational complexity</li>
+                <li>✔ Suitable for small applications</li>
+                <li>✔ Simple maintenance architecture</li>
+            </ul>
+
+            <div class="flow-box">
+
+                <h3>Deployment Workflow</h3>
+
+                <div class="flow">
+                    <div class="step">Code</div>
+                    <div class="arrow">➜</div>
+                    <div class="step">Server</div>
+                    <div class="arrow">➜</div>
+                    <div class="step">Production</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<footer class="footer">
+    © 2026 SkyWings Airline Booking System | Full Stack DevOps Deployment
+</footer>
+
+<script>
+
+function showInfo(type){
+
+const card = document.getElementById("infoCard");
+
+if(type === "traditional"){
+
+card.innerHTML = `
+
+<div class="info-top">
+
+<div class="info-image">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="info-content">
+
+<h2>Traditional Deployment</h2>
+
+<p>
+SkyWings deploys the application directly onto a dedicated production server.
+All services such as frontend, backend, APIs, and database are managed manually.
+</p>
+
+<ul class="features">
+<li>✔ Direct server deployment</li>
+<li>✔ Manual configuration management</li>
+<li>✔ Lower infrastructure cost</li>
+<li>✔ Suitable for small systems</li>
+<li>✔ Basic deployment pipeline</li>
+</ul>
+
+<div class="flow-box">
+
+<h3>Deployment Workflow</h3>
+
+<div class="flow">
+<div class="step">Code</div>
+<div class="arrow">➜</div>
+<div class="step">Server</div>
+<div class="arrow">➜</div>
+<div class="step">Production</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+`;
+}
+
+else if(type === "bluegreen"){
+
+card.innerHTML = `
+
+<div class="info-top">
+
+<div class="info-image">
+<img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="info-content">
+
+<h2>Blue-Green Deployment</h2>
+
+<p>
+SkyWings maintains two identical environments called Blue and Green.
+One environment serves live users while the second environment receives updates.
+Traffic switches instantly after testing.
+</p>
+
+<ul class="features">
+<li>✔ Two identical environments</li>
+<li>✔ Zero downtime deployment</li>
+<li>✔ Instant rollback support</li>
+<li>✔ Safer production release</li>
+<li>✔ High availability architecture</li>
+</ul>
+
+<div class="flow-box">
+
+<h3>Deployment Workflow</h3>
+
+<div class="flow">
+<div class="step">Blue</div>
+<div class="arrow">⇄</div>
+<div class="step">Green</div>
+<div class="arrow">➜</div>
+<div class="step">Traffic Switch</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+`;
+}
+
+else if(type === "rolling"){
+
+card.innerHTML = `
+
+<div class="info-top">
+
+<div class="info-image">
+<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="info-content">
+
+<h2>Rolling Deployment</h2>
+
+<p>
+Rolling deployment gradually updates SkyWings servers one by one.
+Users continue accessing the booking system without full downtime.
+</p>
+
+<ul class="features">
+<li>✔ Gradual server updates</li>
+<li>✔ Continuous availability</li>
+<li>✔ Controlled rollout strategy</li>
+<li>✔ Reduced deployment risk</li>
+<li>✔ Better resource optimization</li>
+</ul>
+
+<div class="flow-box">
+
+<h3>Deployment Workflow</h3>
+
+<div class="flow">
+<div class="step">Server 1</div>
+<div class="arrow">➜</div>
+<div class="step">Server 2</div>
+<div class="arrow">➜</div>
+<div class="step">Server 3</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+`;
+}
+
+else if(type === "container"){
+
+card.innerHTML = `
+
+<div class="info-top">
+
+<div class="info-image">
+<img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="info-content">
+
+<h2>Container-Based Deployment</h2>
+
+<p>
+SkyWings packages frontend, backend, and APIs inside Docker containers.
+Containerization ensures scalability, portability, and cloud-native infrastructure support.
+</p>
+
+<ul class="features">
+<li>✔ Uses Docker containers</li>
+<li>✔ Kubernetes orchestration</li>
+<li>✔ Fast scalability</li>
+<li>✔ Environment consistency</li>
+<li>✔ Microservices support</li>
+</ul>
+
+<div class="flow-box">
+
+<h3>Deployment Workflow</h3>
+
+<div class="flow">
+<div class="step">Docker Build</div>
+<div class="arrow">➜</div>
+<div class="step">Container</div>
+<div class="arrow">➜</div>
+<div class="step">Cloud Deploy</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+`;
+}
+
+card.style.animation = "none";
+card.offsetHeight;
+card.style.animation = "fadeInUp 0.7s ease";
+
+}
+
+</script>
+
+</body>
+</html>
